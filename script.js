@@ -1,4 +1,4 @@
-console.log("from script file");
+
 function calculate() {
 	let cost = +document.getElementById("cost").value;
     let consumPerDay = +document.getElementById("per-day").value;
@@ -9,5 +9,4 @@ function calculate() {
     document.getElementById("month").innerHTML = costPerMonth;
     document.getElementById("year").innerHTML = costPerYear;
     document.getElementById("10years").innerHTML = costPer10Years;
-    console.log("baf");
 }
