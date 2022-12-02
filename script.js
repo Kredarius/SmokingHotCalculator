@@ -6,8 +6,15 @@ function calculate() {
 			cost = 999;
 			document.getElementById("cost").value = cost;
 		}
+		else if (cost < 0) {
+			cost = 0;
+			document.getElementById("cost").value = cost;
+		}
 		if (consumPerDay > 999) {
 			consumPerDay = 999;
+			document.getElementById("per-day").value = consumPerDay;
+		} else if (consumPerDay < 0) {
+			consumPerDay = 0;
 			document.getElementById("per-day").value = consumPerDay;
 		}
     let costPerDay = cost * consumPerDay / 20;
