@@ -29,5 +29,7 @@ function calculate() {
     document.getElementById("year").innerHTML = format(costPerYear);
     document.getElementById("10years").innerHTML = format(costPer10Years);
 }
-document.getElementById("cost").addEventListener("change", calculate)
-document.getElementById("per-day").addEventListener("change", calculate)
+document.getElementById("cost").addEventListener("change", calculate);
+document.getElementById("per-day").addEventListener("change", calculate);
+document.getElementById("cost").addEventListener("keyup", calculate);
+document.getElementById("per-day").addEventListener("keyup", calculate);
