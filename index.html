@@ -2,162 +2,48 @@
 Embed Calculator for money spend for cigaretes.
 -->
 <!DOCTYPE html>
-<html lang="cs-CZ">
+<html lang="cs-CZ" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Domine&family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
-<style>
-  /*reset*/
-  /* http://meyerweb.com/eric/tools/css/reset/
-     v2.0 | 20110126
-     License: none (public domain)
-  */
-  * {
-    box-sizing: border-box;
-  }
-  html, body, div, span, applet, object, iframe,
-  h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-  a, abbr, acronym, address, big, cite, code,
-  del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, strong, sub, sup, tt, var,
-  b, u, i, center,
-  dl, dt, dd, ol, ul, li,
-  fieldset, form, label, legend,
-  table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed,
-  figure, figcaption, footer, header, hgroup,
-  menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
-  	margin: 0;
-  	padding: 0;
-  	border: 0;
-  	font-size: 100%;
-  	font: inherit;
-  	vertical-align: baseline;
-  }
-  /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure,
-  footer, header, hgroup, menu, nav, section {
-  	display: block;
-  }
-  body {
-  	line-height: 1;
-  }
-  ol, ul {
-  	list-style: none;
-  }
-  blockquote, q {
-  	quotes: none;
-  }
-  blockquote:before, blockquote:after,
-  q:before, q:after {
-  	content: '';
-  	content: none;
-  }
-  table {
-  	border-collapse: collapse;
-  	border-spacing: 0;
-  }
+<head style="box-sizing: border-box;">
+  <meta charset="UTF-8" style="box-sizing: border-box;">
+  <link rel="preconnect" href="https://fonts.googleapis.com" style="box-sizing: border-box;">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin style="box-sizing: border-box;">
 
-  /* basic */
-  #smoking-hot-calculator {
-    font-family: 'Domine', serif;
-    width: 500px;
-    height: 300px;
-    font-size: 22px;
-    font-weight: bold;
-  }
-  form {
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 240px;
-  }
-  footer {
-    background-color: lightgrey;
-    display: flex;
-    justify-content: space-between;
-  }
-  h1 {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
-    font-weight: normal;
-    font-size: 18px;
-  }
 
-  /* form */
-  form div {
-    width: 250px;
-  }
-  form input {
-    background-color: lightgrey;
-    font: inherit;
-    width: 150px;
-    margin: 10px;
-    padding: 10px;
-  }
-  form input[type="number"] {
-    text-align: right;
-  }
-
-  form input:invalid {
-    outline: 5px solid red;
-  }
-
-  /* footer */
-  footer div {
-    display: inline-block;
-    width: auto;
-    min-width: 150px;
-    text-align: right;
-    padding: 10px 10px;
-  }
-  footer div:first-of-type {
-    width: auto;
-    min-width: 120px;
-  }
-  footer h1 {
-    text-align: left;
-  }
-</style>
-  <title>Calculator</title>
+  <title style="box-sizing: border-box;">Calculator</title>
 </head>
 
-<body>
-  <div id="smoking-hot-calculator">
-  <form>
-    <div>
-      <h1>Cena krabičky cigaret:</h1>
-      <input type="number" id="cost" name="" value="126" min="0" max="999"/>
-      <label for="cost">Kč</label>
+<body style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;line-height: 1;">
+  <div id="smoking-hot-calculator" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 22px;vertical-align: baseline;font-family: 'Goudy Old Style', 'Trebuchet MS', sans-serif;width: 500px;height: 300px;font-weight: bold;overflow:hidden;letter-spacing: -1px;">
+  <form style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;background-color: white;display: flex;flex-direction: column;justify-content: space-around;align-items: center;height: 240px;">
+    <div style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;width: 250px;">
+      <h1 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 18px;vertical-align: baseline;font-family: 'Consolas', 'Courier New', sans-serif;font-weight: normal;text-transform: uppercase;">Cena krabičky cigaret:</h1>
+      <input type="number" id="cost" name="" value="126" min="0" max="999" style="box-sizing: border-box;background-color: lightgrey;font: inherit;width: 150px;margin: 10px;padding: 10px;text-align: right;">
+      <label for="cost" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">Kč</label>
     </div>
-    <div>
-      <h1>Počet cigaret vykouřených denně:</h1>
-      <input type="number" id="per-day" name="" value="" min="0" max="999"/>
-      <label for="per-day">ks</label>
+    <div style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;width: 250px;">
+      <h1 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 18px;vertical-align: baseline;font-family: 'Consolas', 'Courier New', sans-serif;font-weight: normal;text-transform: uppercase;width: 300px;">Počet cigaret vykouřených denně:</h1>
+      <input type="number" id="per-day" name="" value="" min="0" max="999" style="box-sizing: border-box;background-color: lightgrey;font: inherit;width: 150px;margin: 10px;padding: 10px;text-align: right;">
+      <label for="per-day" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">ks</label>
     </div>
     <!-- <input onclick="calculate();" type="button" value="Spočítat"/> -->
   </form>
 
-  <footer>
-      <div>
-        <h1>Za měsíc:</h1>
-        <h2><span id="month">0</span> Kč</h2>
+  <div style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;display: flex;background-color: lightgrey;justify-content: space-between;position: relative; bottom: 0px;">
+      <div style="box-sizing: border-box;margin: 0;padding: 10px 10px;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;display: inline-block;width: auto;min-width: 120px;text-align: right;">
+        <h1 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 18px;vertical-align: baseline;font-family: 'Consolas', 'Courier New', sans-serif;font-weight: normal;text-align: left;text-transform: uppercase;">Za měsíc:</h1>
+        <h2 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline; line-height: 1.5;"><span id="month" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">0</span> Kč</h2>
       </div>
-    <div>
-        <h1>Za rok:</h1>
-        <h2><span id="year">0</span> Kč</h2>
+    <div style="box-sizing: border-box;margin: 0;padding: 10px 10px;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;display: inline-block;width: auto;min-width: 150px;text-align: right;">
+        <h1 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 18px;vertical-align: baseline;font-family: 'Consolas', 'Courier New', sans-serif;font-weight: normal;text-align: left;text-transform: uppercase;">Za rok:</h1>
+        <h2 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;line-height: 1.5;"><span id="year" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">0</span> Kč</h2>
       </div>
-      <div>
-        <h1>Za 10 let:</h1>
-        <h2><span id="10years">0</span> Kč</h2>
+      <div style="box-sizing: border-box;margin: 0;padding: 10px 10px;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;display: inline-block;width: auto;min-width: 150px;text-align: right;">
+        <h1 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 18px;vertical-align: baseline;font-family: 'Consolas', 'Courier New', sans-serif;font-weight: normal;text-align: left;text-transform: uppercase;">Za 10 let:</h1>
+        <h2 style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;line-height: 1.5;"><span id="10years" style="box-sizing: border-box;margin: 0;padding: 0;border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">0</span> Kč</h2>
       </div>
-  </footer>
-  <script>
+  </div>
+  <script style="box-sizing: border-box;">
     function calculate() {
   	  let cost = +document.getElementById("cost").value;
       let consumPerDay = +document.getElementById("per-day").value;
