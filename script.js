@@ -20,14 +20,27 @@ function calculate() {
   let costPerMonth = costPerDay * 30;
   let costPerYear = costPerDay * 365;
   let costPer10Years = costPerDay * 3652;
-  function format(num) {
-    text = Math.floor(num).toString();
-    return (text.slice(0,-6)+" "+text.slice(-6,-3)+" "+text.slice(-3))
-  }
+
   document.getElementById("month").innerHTML = format(costPerMonth);
   document.getElementById("year").innerHTML = format(costPerYear);
   document.getElementById("10years").innerHTML = format(costPer10Years);
 }
+
+function format(num) {
+  text = Math.floor(num).toString();
+  return (text.slice(0,-6)+" "+text.slice(-6,-3)+" "+text.slice(-3))
+}
+
+function debounce(func, ms) {
+  return function() {
+    setTimeout(() => {
+      func.apply(this, arguments);
+    }, ms)
+  };
+}
+
+calculate = debounce(calculate, 500);
+
 document.getElementById("cost").addEventListener("change", calculate);
 document.getElementById("per-day").addEventListener("change", calculate);
 document.getElementById("cost").addEventListener("keyup", calculate);
