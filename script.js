@@ -1,47 +1,205 @@
-function calculate() {
-  let cost = +document.getElementById("cost").value;
-  let consumPerDay = +document.getElementById("per-day").value;
-  if (cost > 999) {
-    cost = 999;
-    document.getElementById("cost").value = cost;
-  }
-  else if (cost < 0) {
-    cost = 0;
-    document.getElementById("cost").value = cost;
-  }
-  if (consumPerDay > 999) {
-    consumPerDay = 999;
-    document.getElementById("per-day").value = consumPerDay;
-  } else if (consumPerDay < 0) {
-    consumPerDay = 0;
-    document.getElementById("per-day").value = consumPerDay;
-  }
-  let costPerDay = cost * consumPerDay / 20;
-  let costPerMonth = costPerDay * 30;
-  let costPerYear = costPerDay * 365;
-  let costPer10Years = costPerDay * 3652;
+// Google fonts - adding link to head
+let fontLink = document.createElement("link");
+fontLink.type = "text/css";
+fontLink.rel = "stylesheet";
+fontLink.href = "https://fonts.googleapis.com/css2?family=Domine&family=Yanone+Kaffeesatz:wght@300&display=swap";
+document.head.append(fontLink);
 
-  document.getElementById("month").innerHTML = format(costPerMonth);
-  document.getElementById("year").innerHTML = format(costPerYear);
-  document.getElementById("10years").innerHTML = format(costPer10Years);
-}
+//Shadow DOM
+let shadow;
+customElements.define("smoking-hot-calculator", class extends HTMLElement {
+  connectedCallback() {
+    // Inner html for <smoking-hot-calculator> element
+    let costAttr = this.getAttribute("cost") ? this.getAttribute("cost") : 126;
+    let html = `
+      <style>
 
-function format(num) {
-  text = Math.floor(num).toString();
-  return (text.slice(0,-6)+" "+text.slice(-6,-3)+" "+text.slice(-3))
-}
+      /* reset */
+      * {
+        box-sizing: border-box;
+      }
+      html, body, div, span, applet, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      a, abbr, acronym, address, big, cite, code,
+      del, dfn, em, img, ins, kbd, q, s, samp,
+      small, strike, strong, sub, sup, tt, var,
+      b, u, i, center,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, embed,
+      figure, figcaption, footer, header, hgroup,
+      menu, nav, output, ruby, section, summary,
+      time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: none;
+        vertical-align: baseline;
+      }
 
-function debounce(func, ms) {
-  return function() {
+      /* basic */
+      :host {
+        display: inline-block;
+      }
+      #box {
+        font-family: "Domine", serif;
+        width: 500px;
+        height: 300px;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 0 auto;
+      }
+      form {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        height: 240px;
+      }
+      footer {
+        background-color: lightgrey;
+        display: flex;
+        justify-content: space-between;
+      }
+      h1 {
+        font-family: "Yanone Kaffeesatz", sans-serif;
+        font-weight: normal;
+        font-size: 18px;
+      }
+
+      /* form */
+      form div {
+        width: 250px;
+      }
+      form input {
+        background-color: lightgrey;
+        font: inherit;
+        width: 150px;
+        margin: 10px;
+        padding: 10px;
+      }
+      form input[type="number"] {
+        text-align: right;
+      }
+
+      form input:invalid {
+        outline: 5px solid red;
+      }
+
+      /* footer */
+      footer div {
+        display: inline-block;
+        width: auto;
+        min-width: 150px;
+        text-align: right;
+        padding: 10px 10px;
+        height: 60px;
+      }
+      footer div:first-of-type {
+        width: auto;
+        min-width: 120px;
+      }
+      footer h1 {
+        text-align: left;
+      }
+
+      </style>
+      <div id="box">
+        <form>
+          <div>
+            <h1>Cena krabičky cigaret:</h1>
+            <input type="number" id="cost" name="" value="${costAttr}" min="0" max="999"/>
+            <label for="cost">Kč</label>
+          </div>
+          <div>
+            <h1>Počet cigaret vykouřených denně:</h1>
+            <input type="number" id="per-day" name="" value="" min="0" max="999"/>
+            <label for="per-day">ks</label>
+          </div>
+          <!-- <input onclick="calculate();" type="button" value="Spočítat"/> -->
+        </form>
+
+        <footer>
+            <div>
+              <h1>Za měsíc:</h1>
+              <h2><span id="month">0</span> Kč</h2>
+            </div>
+          <div>
+              <h1>Za rok:</h1>
+              <h2><span id="year">0</span> Kč</h2>
+            </div>
+            <div>
+              <h1>Za 10 let:</h1>
+              <h2><span id="10years">0</span> Kč</h2>
+            </div>
+        </footer>
+      </div>
+      `;
+
+    shadow = this.attachShadow({mode: 'closed'});
+    shadow.innerHTML = html;
+
+    shadow.getElementById("cost").addEventListener("change", () => this.calculate());
+    shadow.getElementById("per-day").addEventListener("change", () => this.calculate());
+    shadow.getElementById("cost").addEventListener("keyup", ()=> this.calculate());
+    shadow.getElementById("per-day").addEventListener("keyup", ()=> this.calculate());
+  }
+
+  static get observedAttributes() {
+    return ["cost"];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
     setTimeout(() => {
-      func.apply(this, arguments);
-    }, ms)
-  };
-}
+      shadow.getElementById("cost").value = newValue;
+      this.calculate();
+    }, 0);
+  }
 
-calculate = debounce(calculate, 500);
+  //Other Methods
+  calculate() {
+    let cost = +shadow.getElementById("cost").value;
+    let consumPerDay = +shadow.getElementById("per-day").value;
+    if (cost > 999) {
+      cost = 999;
+      shadow.getElementById("cost").value = cost;
+    }
+    else if (cost < 0) {
+      cost = 0;
+      shadow.getElementById("cost").value = cost;
+    }
+    if (consumPerDay > 999) {
+      consumPerDay = 999;
+      shadow.getElementById("per-day").value = consumPerDay;
+    } else if (consumPerDay < 0) {
+      consumPerDay = 0;
+      shadow.getElementById("per-day").value = consumPerDay;
+    }
+    let costPerDay = cost * consumPerDay / 20;
+    let costPerMonth = costPerDay * 30;
+    let costPerYear = costPerDay * 365;
+    let costPer10Years = costPerDay * 3652;
 
-document.getElementById("cost").addEventListener("change", calculate);
-document.getElementById("per-day").addEventListener("change", calculate);
-document.getElementById("cost").addEventListener("keyup", calculate);
-document.getElementById("per-day").addEventListener("keyup", calculate);
+    shadow.getElementById("month").innerHTML = this.format(costPerMonth);
+    shadow.getElementById("year").innerHTML = this.format(costPerYear);
+    shadow.getElementById("10years").innerHTML = this.format(costPer10Years);
+  }
+
+  format(num) {
+    let text = Math.floor(num).toString();
+    return (text.slice(0,-6)+" "+text.slice(-6,-3)+" "+text.slice(-3))
+  }
+
+  debounce(func, ms) {
+    return function() {
+      setTimeout(() => {
+        func.apply(this, arguments);
+      }, ms)
+    };
+  }
+
+    //calculate = debounce(calculate, 500);
+})

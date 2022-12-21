@@ -6,46 +6,12 @@ Embed Calculator for money spend for cigaretes.
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="reset.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Domine&family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <title>Calculator</title>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
-  <div id="smoking-hot-calculator">
-  <form>
-    <div>
-      <h1>Cena krabičky cigaret:</h1>
-      <input type="number" id="cost" name="" value="126" min="0" max="999"/>
-      <label for="cost">Kč</label>
-    </div>
-    <div>
-      <h1>Počet cigaret vykouřených denně:</h1>
-      <input type="number" id="per-day" name="" value="" min="0" max="999"/>
-      <label for="per-day">ks</label>
-    </div>
-    <!-- <input onclick="calculate();" type="button" value="Spočítat"/> -->
-  </form>
-
-  <footer>
-      <div>
-        <h1>Za měsíc:</h1>
-        <h2><span id="month">0</span> Kč</h2>
-      </div>
-    <div>
-        <h1>Za rok:</h1>
-        <h2><span id="year">0</span> Kč</h2>
-      </div>
-      <div>
-        <h1>Za 10 let:</h1>
-        <h2><span id="10years">0</span> Kč</h2>
-      </div>
-  </footer>
-  </div>
-  <script src="script.js"></script>
+  <smoking-hot-calculator cost="126"/>
 </body>
 
 </html>

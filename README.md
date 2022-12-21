@@ -1,4 +1,8 @@
 # SmokingHotCalculator
 Simple web calculator to calculate how much money is spend for cigarets
 
-    <iframe src="https://kredarius.github.io/SmokingHotCalculator/" width="500" height="300"></iframe>
+Use code in custom-element or load script.js
+
+<smoking-hot-calculator cost=""/>
+
+Attribute sets the initial cost of pack
