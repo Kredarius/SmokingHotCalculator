@@ -52,7 +52,7 @@
           font-weight: bold;
           margin: 0 auto;
         }
-        form {
+        header {
           background-color: white;
           display: flex;
           flex-direction: column;
@@ -71,22 +71,22 @@
           font-size: 18px;
         }
 
-        /* form */
-        form div {
+        /* header */
+        header div {
           width: 250px;
         }
-        form input {
+        header input {
           background-color: lightgrey;
           font: inherit;
           width: 150px;
           margin: 10px;
           padding: 10px;
         }
-        form input[type="number"] {
+        header input[type="number"] {
           text-align: right;
         }
 
-        form input:invalid {
+        header input:invalid {
           outline: 5px solid red;
         }
 
@@ -109,7 +109,7 @@
 
         </style>
         <div id="box">
-          <form>
+          <header>
             <div>
               <h1>Cena krabičky cigaret:</h1>
               <input type="number" id="cost" name="" value="${costAttr}" min="0" max="999"/>
@@ -121,7 +121,7 @@
               <label for="per-day">ks</label>
             </div>
             <!-- <input onclick="calculate();" type="button" value="Spočítat"/> -->
-          </form>
+          </header>
 
           <footer>
               <div>
