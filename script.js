@@ -12,131 +12,124 @@ customElements.define("smoking-hot-calculator", class extends HTMLElement {
     // Inner html for <smoking-hot-calculator> element
     let costAttr = this.getAttribute("cost") ? this.getAttribute("cost") : 126;
     let html = `
-      <style>
-
-      /* reset */
-      * {
-        box-sizing: border-box;
-      }
-      html, body, div, span, applet, object, iframe,
-      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-      a, abbr, acronym, address, big, cite, code,
-      del, dfn, em, img, ins, kbd, q, s, samp,
-      small, strike, strong, sub, sup, tt, var,
-      b, u, i, center,
-      dl, dt, dd, ol, ul, li,
-      fieldset, form, label, legend,
-      table, caption, tbody, tfoot, thead, tr, th, td,
-      article, aside, canvas, details, embed,
-      figure, figcaption, footer, header, hgroup,
-      menu, nav, output, ruby, section, summary,
-      time, mark, audio, video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: none;
-        vertical-align: baseline;
-      }
-
-      /* basic */
-      :host {
-        display: inline-block;
-      }
-      #box {
-        font-family: "Domine", serif;
-        width: 500px;
-        height: 300px;
-        font-size: 22px;
-        font-weight: bold;
-        margin: 0 auto;
-      }
-      form {
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        height: 240px;
-      }
-      footer {
-        background-color: lightgrey;
-        display: flex;
-        justify-content: space-between;
-      }
-      h1 {
-        font-family: "Yanone Kaffeesatz", sans-serif;
-        font-weight: normal;
-        font-size: 18px;
-      }
-
-      /* form */
-      form div {
-        width: 250px;
-      }
-      form input {
-        background-color: lightgrey;
-        font: inherit;
-        width: 150px;
-        margin: 10px;
-        padding: 10px;
-      }
-      form input[type="number"] {
-        text-align: right;
-      }
-
-      form input:invalid {
-        outline: 5px solid red;
-      }
-
-      /* footer */
-      footer div {
-        display: inline-block;
-        width: auto;
-        min-width: 150px;
-        text-align: right;
-        padding: 10px 10px;
-        height: 60px;
-      }
-      footer div:first-of-type {
-        width: auto;
-        min-width: 120px;
-      }
-      footer h1 {
-        text-align: left;
-      }
-
-      </style>
-      <div id="box">
-        <form>
-          <div>
-            <h1>Cena krabičky cigaret:</h1>
-            <input type="number" id="cost" name="" value="${costAttr}" min="0" max="999"/>
-            <label for="cost">Kč</label>
-          </div>
-          <div>
-            <h1>Počet cigaret vykouřených denně:</h1>
-            <input type="number" id="per-day" name="" value="" min="0" max="999"/>
-            <label for="per-day">ks</label>
-          </div>
-          <!-- <input onclick="calculate();" type="button" value="Spočítat"/> -->
-        </form>
-
-        <footer>
+ <style>
+        /* reset */
+        * {
+          box-sizing: border-box;
+        }
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          font-size: 100%;
+          font: none;
+          vertical-align: baseline;
+        }
+        /* basic */
+        :host {
+          display: inline-block;
+        }
+        #box {
+          font-family: "Domine", serif;
+          width: 500px;
+          height: 300px;
+          font-size: 22px;
+          font-weight: bold;
+          margin: 0 auto;
+        }
+        header {
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          height: 240px;
+        }
+        footer {
+          background-color: lightgrey;
+          display: flex;
+          justify-content: space-between;
+        }
+        h1 {
+          font-family: "Yanone Kaffeesatz", sans-serif;
+          font-weight: normal;
+          font-size: 18px;
+        }
+        /* header */
+        header div {
+          width: 250px;
+        }
+        header input {
+          background-color: lightgrey;
+          font: inherit;
+          width: 150px;
+          margin: 10px;
+          padding: 10px;
+        }
+        header input[type="number"] {
+          text-align: right;
+        }
+        header input:invalid {
+          outline: 5px solid red;
+        }
+        /* footer */
+        footer div {
+          display: inline-block;
+          width: auto;
+          min-width: 150px;
+          text-align: right;
+          padding: 10px 10px;
+          height: 60px;
+        }
+        footer div:first-of-type {
+          width: auto;
+          min-width: 120px;
+        }
+        footer h1 {
+          text-align: left;
+        }
+        </style>
+        <div id="box">
+          <header>
             <div>
-              <h1>Za měsíc:</h1>
-              <h2><span id="month">0</span> Kč</h2>
-            </div>
-          <div>
-              <h1>Za rok:</h1>
-              <h2><span id="year">0</span> Kč</h2>
+              <h1>Cena krabičky cigaret:</h1>
+              <input type="number" id="cost" name="" value="${costAttr}" min="0" max="999"/>
+              <label for="cost">Kč</label>
             </div>
             <div>
-              <h1>Za 10 let:</h1>
-              <h2><span id="10years">0</span> Kč</h2>
+              <h1>Počet cigaret vykouřených denně:</h1>
+              <input type="number" id="per-day" name="" value="" min="0" max="999"/>
+              <label for="per-day">ks</label>
             </div>
-        </footer>
-      </div>
+            <!-- <input onclick="calculate();" type="button" value="Spočítat"/> -->
+          </header>
+          <footer>
+              <div>
+                <h1>Za měsíc:</h1>
+                <h2><span id="month">0</span> Kč</h2>
+              </div>
+            <div>
+                <h1>Za rok:</h1>
+                <h2><span id="year">0</span> Kč</h2>
+              </div>
+              <div>
+                <h1>Za 10 let:</h1>
+                <h2><span id="10years">0</span> Kč</h2>
+              </div>
+          </footer>
+        </div>
       `;
 
     shadow = this.attachShadow({mode: 'closed'});
