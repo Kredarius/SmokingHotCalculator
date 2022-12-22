@@ -30,6 +30,7 @@ customElements.define("smoking-hot-calculator", class extends HTMLElement {
         figure, figcaption, footer, header, hgroup,
         menu, nav, output, ruby, section, summary,
         time, mark, audio, video {
+          line-height: 1.2;
           margin: 0;
           padding: 0;
           border: 0;
