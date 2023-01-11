@@ -5,4 +5,4 @@ Use code in custom-element or load script.js
 
 <smoking-hot-calculator cost=""/>
 
-Attribute sets the initial cost of pack
+Attribute "cost" sets the initial cost of pack
